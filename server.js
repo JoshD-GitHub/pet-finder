@@ -12,13 +12,6 @@ app.get('/pets', (req, res) => {
 	`);
 });
 
-// Retrieve a single pet using a name parameter and display the single pet.
-app.get('/pets/:name', (req, res) => {
-	const name = req.params.name;
-	const petName = pets.map((pet) => pet.name);
-	petName.includes(name) ? res.send(`<h1>${name} was found.</h1>`) : res.send(`<h1>${name} was not found.</h1>`);
-});
-
 // Retrieve a single pet using the owner's name with a query string and display the pet.
 app.get('/pets/owner', (req, res) => {
 	const name = req.query.name;
@@ -30,6 +23,13 @@ app.get('/pets/owner', (req, res) => {
 	} else {
 		res.send(`<h1>${name} doesn't have a dog. :( </h1>`);
 	}
+});
+
+// Retrieve a single pet using a name parameter and display the single pet.
+app.get('/pets/:name', (req, res) => {
+	const name = req.params.name;
+	const petName = pets.map((pet) => pet.name);
+	petName.includes(name) ? res.send(`<h1>${name} was found.</h1>`) : res.send(`<h1>${name} was not found.</h1>`);
 });
 
 const PORT = 3000;
